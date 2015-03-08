@@ -30,7 +30,7 @@ public class RakDao {
     		con = ConnectionManager.getConnection(ConnectionManager.PERPUSTAKAAN);
     		con.setAutoCommit(false);
     		for (Rak rak : listRak) {
-	    		String query = "INSERT INTO perpustakaan.rak ('nama_rak', 'segmen' "
+	    		String query = "INSERT INTO perpustakaan.rak (nama_rak, segmen) "
 	    				+ "VALUES (?,?)";
 //	    		log.info(query);
 	    		
@@ -137,15 +137,20 @@ public class RakDao {
     	PreparedStatement ps = null;
     	ResultSet rs = null;
     	List<Rak> result = new ArrayList<Rak>();
-    	String filter = params.get("filter");
     	int start = Integer.valueOf(params.get("start"));
     	int limit = Integer.valueOf(params.get("limit"));
-
+    	int rakId = Integer.valueOf(params.get("rakId"));
+    	
+    	String whereClause = "";
+    	if(rakId>0){
+    		whereClause+="WHERE rak_id="+rakId+" ";
+    	}
     	
     	try {
     		con = ConnectionManager.getConnection(ConnectionManager.PERPUSTAKAAN);
     		String query = "SELECT 	rak_id, nama_rak, segmen "
     				+ "FROM perpustakaan.rak "
+    				+ whereClause
     				+ "LIMIT ?, ?";
 //	    		log.info(query);
     		

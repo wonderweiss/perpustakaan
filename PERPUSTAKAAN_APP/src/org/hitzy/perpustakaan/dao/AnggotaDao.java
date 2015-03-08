@@ -147,22 +147,28 @@ public class AnggotaDao {
 		return result;
 	}
 	
-	public List<Anggota> getAllAnggota(Map<String, String> params){
+	public List<Anggota> getAnggota(Map<String, String> params){
 		log.info("getAnggota invoked.");
 
 		Connection con = null;		
     	PreparedStatement ps = null;
     	ResultSet rs = null;
     	List<Anggota> result = new ArrayList<Anggota>();
-    	String filter = params.get("filter");
     	int start = Integer.valueOf(params.get("start"));
     	int limit = Integer.valueOf(params.get("limit"));
+    	int anggotaId = Integer.valueOf(params.get("anggotaId"));
+    	
+    	String whereClause = "";
+    	if(anggotaId>0){
+    		whereClause+="WHERE petugas_id="+anggotaId+" ";
+    	}
 
     	
     	try {
     		con = ConnectionManager.getConnection(ConnectionManager.PERPUSTAKAAN);
     		String query = "SELECT 	anggota_id, nama_anggota, jenis_kelamin, pekerjaan, tempat_lahir, tanggal_lahir, telepon, email "
     				+ "FROM perpustakaan.anggota "
+    				+ whereClause
     				+ "LIMIT ?, ?";
 //	    		log.info(query);
     		
