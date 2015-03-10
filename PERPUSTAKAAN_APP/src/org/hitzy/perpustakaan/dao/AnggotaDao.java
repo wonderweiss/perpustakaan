@@ -17,7 +17,6 @@ import org.hitzy.perpustakaan.util.ConnectionManager;
 
 public class AnggotaDao {
 
-//	private Logger log = new AppLogger(AnggotaDao.class).getLogger();
 	private Logger log = Logger.getLogger(AnggotaDao.class);
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
