@@ -12,7 +12,6 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.hitzy.perpustakaan.model.Anggota;
-//import org.hitzy.perpustakaan.util.AppLogger;
 import org.hitzy.perpustakaan.util.ConnectionManager;
 
 public class AnggotaDao {
