@@ -79,7 +79,7 @@ public class AnggotaService {
 	@Path("/DeleteAnggota/{anggotaIds}")
 	@Consumes("application/json")
 	public String deleteAnggota(@PathParam("anggotaIds")String anggotaIds){
-		log.info("deleteAnggota invoked...");
+		log.info("deleteAnggota invoked... ");
 		
 		String[] arrayIds = anggotaIds.split("-");
 		List<Integer> ids = new ArrayList<>();
